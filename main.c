@@ -9,7 +9,7 @@
 #include "wait.h"
 #include "memory_map.h"
 #include "circular_buffer.h"
-
+#include "fixed_point_arithmetic.h"
 
 bool say_hi(const char * name, const size_t size, bool (*func)(const char *, const size_t))
 {
@@ -122,6 +122,21 @@ int main(int argc, char *argv[])
 
         printf("Done: Circular buffer\n\n");
 
+        // Fixed-point arithmetic
+        const float f1 = 0.75f;
+        const float f2 = -0.025;
+
+        printf("Multiplying '%f' to '%f':\n", f1, f2);
+        float result = fp_mul_q1_15(f1, f2);
+        printf("Float value Q1.15: %f\n", result);
+
+        result = fp_mul_q8_8(f1, f2);
+        printf("Float value Q8.8: %f\n", result);
+
+        result = fp_mul_q16_16(f1, f2);
+        printf("    Float value Q16.16: %f\n", result);
+
+        printf("Done: Fixed-point arithmetic\n\n");
     }
     else
     {
