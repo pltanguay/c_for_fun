@@ -9,8 +9,7 @@ typedef struct CircularBuffer
     int head;
     int tail;
     int count;
-} CircularBuffer
-;
+} CircularBuffer;
 
 void cb_init(CircularBuffer* cb);
 void cb_push(CircularBuffer* cb, const int value);
