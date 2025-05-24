@@ -8,6 +8,8 @@
 #include "bit.h"
 #include "wait.h"
 #include "memory_map.h"
+#include "circular_buffer.h"
+
 
 bool say_hi(const char * name, const size_t size, bool (*func)(const char *, const size_t))
 {
@@ -71,7 +73,7 @@ int main(int argc, char *argv[])
         busy_wait_cycles(10);
         printf("Success: busy_wait_cycles\n\n");
 
-        busy_wait_ms(5000);
+        busy_wait_ms(2000);
         printf("Success: busy_wait_ms\n");
 
         printf("Done: Wait\n\n");
@@ -88,12 +90,46 @@ int main(int argc, char *argv[])
 
         printf("Done: Memory map\n\n");
 
+        // Circular buffer
+        CircularBuffer cb;
+
+        printf("CircularBuffer: cb_init()\n");
+        cb_init(&cb);
+        cb_print(&cb);
+
+        printf("CircularBuffer: cb_pop()\n");
+        cb_pop(&cb); // expecting warning
+        cb_print(&cb);
+
+        printf("CircularBuffer: filling buffer\n");
+        for (int i = 0; i < CB_SIZE; i++)
+        {
+            cb_push(&cb, i * 10);
+        }
+        cb_print(&cb);
+
+        printf("CircularBuffer: cb_push() when full\n");
+        cb_push(&cb, 99); // expecting warning
+        cb_print(&cb);
+
+        printf("CircularBuffer: emptying buffer\n");
+        for (int i = 0; i < CB_SIZE; i++)
+        {
+            const int popped = cb_pop(&cb);
+            printf("    Popped value: %d\n", popped);
+        }
+        cb_print(&cb);
+
+        printf("Done: Circular buffer\n\n");
+
     }
     else
     {
         printf("Error: Wrong number of argument : %d\n", argc);
         return 1;
     }
+
+    printf("\nBYE!\n");
 
     return 0;
 }
