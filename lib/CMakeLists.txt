@@ -5,6 +5,7 @@ add_library(libUtils STATIC
     src/allocate.c
     src/wait.c
     src/memory_map.c
+    src/circular_buffer.c
 )
 
 target_include_directories(libUtils PUBLIC
