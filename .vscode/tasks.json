@@ -1,0 +1,57 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "CMake Configure (default)",
+        "type": "shell",
+        "command": "cmake",
+        "args": [
+          "--preset", "default"
+        ],
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "CMake Build (default)",
+        "type": "shell",
+        "command": "cmake",
+        "args": [
+          "--build", "--preset", "default"
+        ],
+        "group": "build",
+        "dependsOn": [
+          "CMake Configure (default)"
+        ],
+        "problemMatcher": []
+      },
+      {
+        "label": "CMake Clean (default)",
+        "type": "shell",
+        "command": "cmake",
+        "args": [
+          "--build", "--preset", "default", "--target", "clean"
+        ],
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "Run CForFun",
+        "type": "shell",
+        "command": "${workspaceFolder}/build/CForFun",
+        "args": [
+            "CForFun"
+        ],
+        "group": {
+          "kind": "test",
+          "isDefault": true
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
