@@ -5,10 +5,10 @@ project(
     VERSION 1.0
 )
 
-add_subdirectory(lib)
+add_subdirectory(utils)
 
 add_executable(CForFun
     main.c
 )
 
-target_link_libraries(CForFun PRIVATE libUtils)
+target_link_libraries(CForFun PRIVATE Utils)

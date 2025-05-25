@@ -1,6 +1,6 @@
-project(lib)
+project(Utils)
 
-add_library(libUtils STATIC
+add_library(Utils STATIC
     src/hello.c
     src/allocate.c
     src/wait.c
@@ -9,8 +9,8 @@ add_library(libUtils STATIC
     src/fixed_point_arithmetic.c
 )
 
-target_include_directories(libUtils PUBLIC
+target_include_directories(Utils PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-target_link_libraries(libUtils m)
+target_link_libraries(Utils m)
