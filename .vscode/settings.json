@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "functional": "c"
+        "functional": "c",
+        "fixed_point_arithmetic.h": "c",
+        "hello.h": "c",
+        "bit.h": "c"
     }
 }
