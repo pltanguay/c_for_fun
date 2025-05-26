@@ -9,6 +9,7 @@ add_library(Utils STATIC
     src/fixed_point_arithmetic.c
     src/bit.c
     src/debouncing.c
+    src/uart.c
 )
 
 target_include_directories(Utils PUBLIC

@@ -12,6 +12,7 @@
 #include "circular_buffer.h"
 #include "fixed_point_arithmetic.h"
 #include "debouncing.h"
+#include "uart.h"
 
 void sleep_ms(const unsigned int ms)
 {
@@ -181,6 +182,27 @@ int main(int argc, char *argv[])
         debounce_button(&db_ctx, 0); // False pess
         debounce_button(&db_ctx, 1);
         printf("Done: Debouncing\n\n");
+
+        // UART
+        printf("Mock UART Interface\n");
+
+        UART * uart = get_uart();
+
+        uart->init(115200);
+
+        const char msg[] = "Hello Uart!";
+        if (!uart->tx(msg))
+        {
+            printf("    Error: Tx");
+        }
+
+        mock_uart_preload_receive("Incoming data");
+
+        char receive_buffer[50];
+        const size_t n_received = uart->rx(receive_buffer, sizeof(receive_buffer));
+        receive_buffer[n_received] = '\0';
+
+        printf("    Success: Received: %s\n", receive_buffer);
     }
     else
     {
