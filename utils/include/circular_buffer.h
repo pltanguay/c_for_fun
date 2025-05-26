@@ -3,7 +3,7 @@
 
 #define CB_SIZE 4
 
-typedef struct CircularBuffer
+typedef struct
 {
     int buffer[CB_SIZE];
     int head;

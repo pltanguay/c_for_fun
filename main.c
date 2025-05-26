@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <unistd.h>
 
 #include "hello.h"
 #include "allocate.h"
@@ -10,6 +11,12 @@
 #include "memory_map.h"
 #include "circular_buffer.h"
 #include "fixed_point_arithmetic.h"
+#include "debouncing.h"
+
+void sleep_ms(const unsigned int ms)
+{
+    usleep(ms * 1000); // usleep takes microseconds
+}
 
 bool say_hi(const char * name, const size_t size, bool (*func)(const char *, const size_t))
 {
@@ -144,6 +151,36 @@ int main(int argc, char *argv[])
         printf("    Float value Q16.16: %f\n", result);
 
         printf("Done: Fixed-point arithmetic\n\n");
+
+        // Debounce
+        printf("Debouncing\n");
+        DebounceContext db_ctx = { BUTTON_RELEASED, 0 };
+
+        // gpio_read=0   pressed =1
+        debounce_button(&db_ctx, 0); // Pressing
+        debounce_button(&db_ctx, 0);
+        debounce_button(&db_ctx, 0);
+        debounce_button(&db_ctx, 0);
+        debounce_button(&db_ctx, 0);
+        debounce_button(&db_ctx, 0);
+        debounce_button(&db_ctx, 0);
+        debounce_button(&db_ctx, 0);
+
+        debounce_button(&db_ctx, 1); // False release
+        debounce_button(&db_ctx, 0);
+
+        debounce_button(&db_ctx, 1); // Releasing
+        debounce_button(&db_ctx, 1);
+        debounce_button(&db_ctx, 1);
+        debounce_button(&db_ctx, 1);
+        debounce_button(&db_ctx, 1);
+        debounce_button(&db_ctx, 1);
+        debounce_button(&db_ctx, 1);
+        debounce_button(&db_ctx, 1);
+
+        debounce_button(&db_ctx, 0); // False pess
+        debounce_button(&db_ctx, 1);
+        printf("Done: Debouncing\n\n");
     }
     else
     {

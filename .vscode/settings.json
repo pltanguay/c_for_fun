@@ -3,6 +3,7 @@
         "functional": "c",
         "fixed_point_arithmetic.h": "c",
         "hello.h": "c",
-        "bit.h": "c"
+        "bit.h": "c",
+        "debouncing.h": "c"
     }
 }

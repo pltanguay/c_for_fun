@@ -8,6 +8,7 @@ add_library(Utils STATIC
     src/circular_buffer.c
     src/fixed_point_arithmetic.c
     src/bit.c
+    src/debouncing.c
 )
 
 target_include_directories(Utils PUBLIC
