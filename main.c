@@ -55,17 +55,24 @@ int main(int argc, char *argv[])
         // Bit
         uint32_t reg = 0x0;
 
+        printf("Bit set, clear and toggle: %d\n", reg);
+
         BIT_SET(reg, 3);
-        printf("Value: %d\n", reg);
+        printf("    Set bit 3 value: %d\n", reg);
 
         BIT_CLEAR(reg, 3);
-        printf("Value: %d\n", reg);
+        printf("    Clear bit 3 value: %d\n", reg);
 
         BIT_TOGGLE(reg, 3);
-        printf("Value: %d\n", reg);
+        printf("    Toggle bit 3 value: %d\n", reg);
 
         BIT_TOGGLE(reg, 3);
-        printf("Value: %d\n", reg);
+        printf("    Toggle bit 3 value: %d\n", reg);
+
+        printf("\nReverse byte 0b10011011 (155, 0x9B) \n");
+        unsigned char byte = (unsigned char)0b10011011;
+        const unsigned char reversedByte = reverse_byte(byte);
+        printf("    Reversed byte: %d\n", reversedByte);
 
         printf("Done: Bit\n\n");
 

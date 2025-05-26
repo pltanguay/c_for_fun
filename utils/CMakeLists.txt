@@ -7,6 +7,7 @@ add_library(Utils STATIC
     src/memory_map.c
     src/circular_buffer.c
     src/fixed_point_arithmetic.c
+    src/bit.c
 )
 
 target_include_directories(Utils PUBLIC
