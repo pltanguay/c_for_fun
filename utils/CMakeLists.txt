@@ -10,6 +10,7 @@ add_library(Utils STATIC
     src/bit.c
     src/debouncing.c
     src/uart.c
+    src/scheduler.c
 )
 
 target_include_directories(Utils PUBLIC
