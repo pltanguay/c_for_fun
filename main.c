@@ -66,16 +66,16 @@ int main(int argc, char *argv[])
         printf("Bit set, clear and toggle: %d\n", reg);
 
         BIT_SET(reg, 3);
-        printf("    Set bit 3 value: %d\n", reg);
+        printf("    Set bit 3 value: %d. Bit: %d\n", reg, BIT_READ(reg, 3));
 
         BIT_CLEAR(reg, 3);
-        printf("    Clear bit 3 value: %d\n", reg);
+        printf("    Clear bit 3 value: %d. Bit: %d\n", reg, BIT_READ(reg, 3));
 
         BIT_TOGGLE(reg, 3);
-        printf("    Toggle bit 3 value: %d\n", reg);
+        printf("    Toggle bit 3 value: %d. Bit: %d\n", reg, BIT_READ(reg, 3));
 
         BIT_TOGGLE(reg, 3);
-        printf("    Toggle bit 3 value: %d\n", reg);
+        printf("    Toggle bit 3 value: %d. Bit: %d\n", reg, BIT_READ(reg, 3));
 
         printf("\nReverse byte 0b10011011 (155, 0x9B) \n");
         unsigned char byte = (unsigned char)0b10011011;
